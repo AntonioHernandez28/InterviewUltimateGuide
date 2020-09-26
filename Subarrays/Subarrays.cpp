@@ -1,7 +1,8 @@
 #include <iostream>
 #include <vector> 
 using namespace std;
-
+// OJO NO CONFUNDIR ESTE APPROACH CON UN DP
+// SUBSTRING SIEMPRE SON SEGUIDOS, SI NO SON SEGUIDOS PERO SI LOS MISMOS ELEMENTOS EN UNA SUBSECUENCIA
 vector<vector<int>> Subarrays; 
 //Sacar todos los subarrays con Recursion
 void GenerateAllSubarrays(vector<int> nums, int Start, int End){
@@ -46,7 +47,7 @@ int main(){
     Output : [1], [1, 2], [2], [1, 2, 3], [2, 3], [3]
     */
 
-    vector<int> A {1, 2, 3, 4, 5}; 
+    vector<int> A {1, 0, 1, 0, 1}; 
     //GenerateAllSubarrays(A, 0, 0); 
     for(auto x:Subarrays){
         for(auto y:x){ cout << y << " "; }
@@ -57,6 +58,7 @@ int main(){
     /* 1 Given an integer array and an integer K, find the number of sub arrays in which all elements are less than K. */ 
     cout << MaximumSubarray(A, 4) << endl; 
 
+    /* More Problems: https://leetcode.com/problems/subarray-sums-divisible-by-k/ */
 
 
 }
