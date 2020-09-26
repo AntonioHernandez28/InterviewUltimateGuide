@@ -17,6 +17,27 @@ void GenerateAllSubarrays(vector<int> nums, int Start, int End){
     }
     return; 
 }
+
+/* Solution Problem 1 */
+vector<vector<int>> GlobalSolution; 
+void Helper(vector<int> nums, int Start, int End, int K){
+    if(Start == nums.size())return; 
+    else if(Start > End) Helper(nums, 0, End + 1, K); 
+    else{
+        vector<int> currentSubarray; 
+        for(int i = Start; i <= End; i++){
+            currentSubarray.push_back(nums[i]); 
+        }
+        if(currentSubarray.size() < K) GlobalSolution.push_back(currentSubarray); 
+        Helper(nums, Start + 1, End, K);
+    }
+
+    return; 
+}
+int MaximumSubarray(vector<int> nums, int K){
+    Helper(nums, 0, 0, K); 
+    return GlobalSolution.size(); 
+}
 /* Hacer subarrays */ 
 int main(){
     /* Teniendo [1,2,3,4] sacar todos los posibles subarreglos */ 
@@ -25,12 +46,18 @@ int main(){
     Output : [1], [1, 2], [2], [1, 2, 3], [2, 3], [3]
     */
 
-    vector<int> A {1, 2, 3, 4, 5, 6}; 
-    GenerateAllSubarrays(A, 0, 0); 
+    vector<int> A {1, 2, 3, 4, 5}; 
+    //GenerateAllSubarrays(A, 0, 0); 
     for(auto x:Subarrays){
         for(auto y:x){ cout << y << " "; }
-        cout << endl; 
+        //cout << endl; 
     }
+
+    /* Problems Subarrays*/ 
+    /* 1 Given an integer array and an integer K, find the number of sub arrays in which all elements are less than K. */ 
+    cout << MaximumSubarray(A, 4) << endl; 
+
+
 
 }
 
